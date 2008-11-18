@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-type" content="$theme.type; charset=utf-8" />
+	<title>{% block title %}$site.name{% if title %} &raquo; ${ title | escape }{% endif %}{% endblock %}</title>
+	<meta name="generator" content="Chyrp" />
+	<link rel="pingback" href="$site.chyrp_url/includes/xmlrpc.php" />
+	<link rel="EditURI" type="application/rsd+xml" href="$site.chyrp_url/includes/rsd.php" />
+	<link rel="stylesheet" href="$site.chyrp_url/themes/mobiledesign/stylesheets/blueprint/screen.css" type="text/css" media="screen" charset="utf-8" />
+	<script type="text/javascript" src="$site.chyrp_url/themes/mobiledesign/javascripts/superfish.js"></script>
+	$theme.feeds
+	$theme.stylesheets
+	$theme.javascripts
+	${ trigger.call("head") }
+	<script type="text/javascript">
+	  jQuery(document).ready(function(){
+			jQuery("#menu li span.show").click(
+				function(){ $("ul", this).fadeIn("fast"); }, 
+				function() { } 
+			);
+	  	if (document.all) {
+				jQuery("#nav-one li").hoverClass ("sfHover");
+			}
+	  });
+
+		jQuery.fn.hoverClass = function(c) {
+			return this.each(function(){
+				jQuery(this).hover( 
+					function() { $(this).addClass(c);  },
+					function() { $(this).removeClass(c); }
+				);
+			});
+		};	  
+	</script>
+</head>

@@ -1,0 +1,16 @@
+<script>
+  jQuery(document).ready(function(){
+    jQuery("#home-tabs > ul").tabs();
+  });
+</script>
+<div id="home-tabs" class="span-18">
+	<ul class="popular-nav">
+		<li><a href="#popular">Popular</a></li>
+		<li><a href="#upcoming">Upcoming</a></li>
+	</ul>
+{% block content %}
+	<div id="popular">
+		<h4 class="day">Most Popular Posts go here.</h4>
+	</div>
+{% endblock %}
+<div id="upcoming">

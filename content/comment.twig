@@ -1,0 +1,15 @@
+<li id="comment_$comment.id">
+    {% if comment.status == "denied" %}
+    <span class="waiting">${ "Your comment is awaiting moderation." | translate }</span>
+    {% endif %}
+    <p class="meta">
+        ${ "<strong>%s</strong> added on <a href=\"%s\" class=\"permalink\">%s</a>" | translate | format(comment.author_link, comment.post.url ~ "#comment_"~comment.id, comment.created_at | strftime("%B %e, %Y, at %I:%M %p" | translate)) }
+		<span class="item-controls">
+			<span class="edit">${ comment.edit_link("Edit" | translate, "") }</span>
+			<span class="delete">${ comment.delete_link("Delete" | translate, "") }</span>
+		</span>
+    </p>
+    <blockquote>
+        $comment.body
+    </blockquote>
+</li>

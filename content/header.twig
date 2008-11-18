@@ -1,0 +1,80 @@
+<div id="nav">
+	<h4><a href="http://mobiledesign.org">Mobile Design</a></h4>
+	
+	<p class="userinfo">
+		{% if visitor.logged_in %}
+		${ "Welcome, %s" | translate | format(visitor.login | fallback("Guest" | translate)) }  
+		<a href="{% url "controls" %}">${ "My Account" | translate }</a>
+	    <a href="{% url "logout" %}">${ "Log Out" | translate }</a>
+	    {% else %}
+	    <a href="{% url "login" %}">${ "Log In" | translate }</a>
+	    {% if site.can_register %}
+	    <a href="{% url "register" %}">${ "Register" | translate }</a>
+	    {% endif %}
+	    <a href="{% url "lost_password" %}">${ "Lost Password?" | translate }</a>
+	    {% endif %}
+	    {% if visitor.group.can("change_settings", "toggle_extensions") %}
+        <a id="site_settings" href="$site.chyrp_url/admin/">${ "Admin" | translate }</a>
+        {% endif %}
+	</p>
+</div>
+<div id="header" class="span-24 border-5">
+	<h1><a href="/">News</a> <span class="beta">Alpha</span></h1>
+	<form action="$site.url" method="get" accept-charset="utf-8">
+	        <input type="hidden" name="action" value="search" id="action" />
+	        <input type="search" id="search" name="query" value="${ GET.query | escape }" />
+	</form>
+</div>
+<div id="navigation" class="border-5">
+	<ul id="menu" class="nav">
+		<li id="nav-all" class="first"><a href="/">All</a></li>
+		<li id="nav-topics" class="submenu"><a href="/topics/">Topics</a>
+			<ul>
+				<li><a href="/context/">Context</a></li>
+				<li><a href="/strategy/">Strategy</a></li>
+				<li><a href="/ux/">User Experience</a></li>
+				<li><a href="/devices/">Devices</a></li>
+				<li><a href="/mobile-20/">Mobile 2.0</a></li>
+				<li><a href="/adaptation/">Content Adaptation</a></li>
+				<li><a href="/usability/">Usability</a></li>
+				<li><a href="/topics">All...</a></li>
+			</ul></li>
+		<li id="nav-frameworks" class="submenu"><a href="/frameworks/">Frameworks</a>
+			<ul>
+				<li><a href="/mobile-web/">Mobile Web</a></li>
+				<li><a href="/iphone/">iPhone</a></li>
+				<li><a href="/android/">Android</a></li>
+				<li><a href="/javame/">JavaME</a></li>
+				<li><a href="/brew/">BREW</a></li>
+				<li><a href="/windows-mobile/">Windows Mobile</a></li>
+				<li><a href="/flash-lite/">Flash Lite</a></li>
+			</ul></li>
+		<li id="nav-tools" class="submenu"><a href="/tools/">Tools</a>
+			<ul>
+				<li><a href="/tools/design/">Design Tools</a></li>
+				<li><a href="/tools/tools/">Development Tools</a></li>
+				<li><a href="/tools/browsers/">Mobile Browsers</a></li>
+				<li><a href="/tools/databases/">Device Databases</a></li>
+				<li><a href="/tools/testing/">Testing</a></li>
+			</ul></li>
+		<li id="nav-datapoints" class="submenu"><a href="/datapoints/">Data Points</a>
+			<ul>
+				<li><a href="/datapoints/market/">Market Size</a></li>
+				<li><a href="/datapoints/usage/">Usage Statistics</a></li>
+				<li><a href="/datapoints/sales/">Sales Figures</a></li>
+				<li><a href="/datapoints/quotes/">Quotes</a></li>
+				<li><a href="/datapoints/predictions/">Predictions</a></li>
+			</ul></li>
+		<li id="nav-resources" class="submenu"><a href="/resources/">Resources</a>
+			<ul>
+				<li><a href="/articles/">Articles</a></li>
+				<li><a href="/guides/">Guides</a></li>
+				<li><a href="/tutorials/">Tutorials</a></li>
+				<li><a href="/examples/">Examples</a></li>
+				<li><a href="/sample-code/">Sample Code</a></li>
+				<li><a href="/books/">Books</a></li>
+				<li><a href="/blogs/">Blogs</a></li>
+			</ul></li>
+		<li id="nav-events"><a href="/events/">Events</a></li>
+	</ul>
+</div>

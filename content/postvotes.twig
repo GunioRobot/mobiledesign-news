@@ -1,0 +1,12 @@
+{% block content %}
+<div class="postvotes">
+    <ol>
+{% for postvote in modules['postvotes'].getTopPosts(10) %}
+        <li class="item">
+			<span class="score score${ postvote.postvotes_score }"><a class="postvote" href="$postvote.url">${ postvote.postvotes_score }</a></span>
+			<span class="score-title"><a href="$postvote.url">${ postvote.title | fallback(postvote.excerpt) }</a></span>
+        </li>
+{% endfor %}
+    </ol>
+</div>
+{% endblock %}

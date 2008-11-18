@@ -1,0 +1,37 @@
+{% include "content/html-head.twig" %}
+<body class="$page.clean{% if route.action == "index" %} home{% endif %}">
+<div class="container">
+	{% for type, messages in flash.all | items %}
+    {% for message in messages %}
+	<div id="messages" class="${ type | depluralize }">$message</div> <!-- end messages -->
+	{% endfor %}
+    {% endfor %}
+
+	{% include "content/header.twig" %}
+	<div id="content-wrap" class="span-24">	
+		<div id="content" class="span-18">
+			{% if route.action == "index" %}
+				{% include "content/home.twig" %}
+			{% endif %}
+			{% block content %}{% endblock %}
+			$posts.prev_link
+			$posts.next_link
+			{% if posts.paginated and posts.pages > 1 %}
+			<span class="pages">${ "Page %d of %d" | translate | format(posts.page, posts.pages) }</span>
+			{% endif %}
+		</div>
+		
+		{% if route.action == "index" %}
+			{% include "content/sidebar.twig" %}
+			{% else %}
+			{% include "content/page-sidebar.twig" %}
+		{% endif %}
+		
+	</div>
+	{% include "content/footer.twig" %}
+
+	{% include "content/debug.twig" %}
+<!-- Queries: $sql_queries | Load Time: $theme.load_time -->
+</div>
+</body>
+</html>

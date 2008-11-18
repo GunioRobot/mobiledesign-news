@@ -1,0 +1,39 @@
+<div id="sidebar" class="span-6 last border-5">
+{% if visitor.guest %}
+<h4>About</h4>
+{% include "content/about.twig" %}
+<hr />
+{% endif %}
+<h4>Most Popular Posts</h4>
+{% include "content/postvotes.twig" %}
+<hr />
+${ trigger.call("sidebar") }
+{% if tags %}
+<h4>Most Popular Topics</h4>
+<ul id="tags_list">
+    {% for tag in tags %}
+    <li>
+        <a href="{% url "tag/" ~ tag.url %}" title="${ "%d post tagged &quot;%s&quot;" | translate_plural("%d posts tagged &quot;%s&quot;") | format(tag.popularity, (tag.name | escape)) }">$tag.name</a>
+        <span class="sub">$tag.popularity</span>
+        {% if route.action == "tag" and not (GET.name | contains(tag.clean)) %}
+        <span class="sub">&nbsp;<a href="{% url "tag/"~ tag.url ~ (GET.name | urlencode) %}"></a></span>
+        {% endif %}
+    </li>
+    {% endfor %}
+    <li><a href="/topics/">View All</a></li>
+</ul>
+{% endif %}
+<hr />
+{% if theme.archives_list %}
+<h4>${ "Archives" | translate }</h4>
+<ul>
+    {% for archive in theme.archives_list %}
+    <li>
+        <a href="$archive.url">${ archive.when | strftime("%B %Y" | translate) }</a>
+        <span class="sub">$archive.count</span>
+    </li>
+    {% endfor %}
+    <li><a href="{% url "archive" %}">${ "View All" | translate }</a></li>
+</ul>
+{% endif %}
+</div>

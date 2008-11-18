@@ -1,0 +1,16 @@
+{% if visitor.logged_in %}
+<div class="post-new">
+<ul>
+	<li id="post-text"><a href="http://news.mobiledesign.org/admin/?action=write_post&feather=text">Text</a></li>
+	<li id="post-link"><a href="http://news.mobiledesign.org/admin/?action=write_post&feather=link">Link</a></li>
+	<li id="post-quote"><a href="http://news.mobiledesign.org/admin/?action=write_post&feather=quote">Quote</a></li>
+	<li id="post-photo"><a href="http://news.mobiledesign.org/admin/?action=write_post&feather=photo">Photo</a></li>
+	<li id="post-video"><a href="http://news.mobiledesign.org/admin/?action=write_post&feather=video">Video</a></li>
+</ul>
+</div>
+{% else %}
+<div class="intro">
+<h3>Welcome to Mobile Design <strong>News</strong></h3>
+<p>The goal of News is to bring you the best news and information about the mobile medium. If you are new to mobile, or have been in the community for years, our goal is to make it easier to stay up to date with everything that is going on. {% if site.can_register %} <a href="{% url "register" %}">Register for a Free account</a> and get started.{% endif %}</p>
+</div>
+{% endif %}

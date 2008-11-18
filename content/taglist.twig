@@ -1,0 +1,15 @@
+{% block content %}
+	{% if posts.paginated %}
+	<h1>${ "%s" | translate("tags") | format(tag | escape) }</h1>
+	{% endif %}
+	{% for post in posts.paginated %}
+{% include "feathers/" ~ post.feather ~ ".twig" %}
+	{% else %}
+	<h1>${ "No Posts" | translate }</h1>
+	{% if reason == "tag_not_found" %}
+	<p>${ "There are no posts with the tag you specified." | translate("tags") }</p>
+	{% else %}
+	<p>${ "No tag specified." | translate("tags") }</p>
+	{% endif %}
+	{% endfor %}
+{% endblock %}
